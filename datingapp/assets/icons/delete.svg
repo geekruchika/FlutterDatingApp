@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="21px" viewBox="0 0 18 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Chats-" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-326.000000, -190.000000)">
+        <g id="Delete-" transform="translate(326.000000, 190.000000)" fill="#FAFAFA" fill-rule="nonzero">
+            <g id="Layer_1">
+                <path d="M1.785,18.6718984 C1.785,19.9525156 2.85588844,21 4.16501859,21 L13.6850372,21 C14.9941116,21 16.065,19.9525156 16.065,18.6718984 L16.065,5.25 L1.785,5.25 L1.785,18.6718984 Z M17.85,1.75 L13.3875,1.75 L11.8933992,0 L5.95665656,0 L4.4625,1.75 L0,1.75 L0,3.5 L17.85,3.5 L17.85,1.75 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

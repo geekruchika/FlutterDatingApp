@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="23px" viewBox="0 0 24 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>account</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="105.08361%" y1="105.782829%" x2="-3.15159218%" y2="-3.05881962%" id="linearGradient-1">
+            <stop stop-color="#7873F5" offset="0%"></stop>
+            <stop stop-color="#EC77AB" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="account" fill="url(#linearGradient-1)" fill-rule="nonzero">
+            <g>
+                <ellipse id="Oval" cx="12" cy="5.75" rx="6" ry="5.75"></ellipse>
+                <path d="M12,13.4166667 C5.37257931,13.4166667 0,17.7072682 0,23 L24,23 C24,17.7072682 18.6274207,13.4166667 12,13.4166667 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
