@@ -1,0 +1,66 @@
+{
+  "project_info": {
+    "project_number": "804317660274",
+    "firebase_url": "https://flutter-dating-app.firebaseio.com",
+    "project_id": "flutter-dating-app",
+    "storage_bucket": "flutter-dating-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804317660274:android:1e4b32425fa33a4e",
+        "android_client_info": {
+          "package_name": "com.example.datingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804317660274-lb9qpgab8odosl8h2jsunh752qki2gci.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.datingapp",
+            "certificate_hash": "9a33a058b828a68a713f47230434ea3229406a00"
+          }
+        },
+        {
+          "client_id": "804317660274-c3ttdtef25q8ipcl4bm30r45gvg9ljr5.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "804317660274-c3ttdtef25q8ipcl4bm30r45gvg9ljr5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzh3tW-3XWwTEU4z_MEnJS1A8ldZlfUBQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "804317660274-kp34juj02lqqia1gba380kf4pgnboqqp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.datingapp"
+              }
+            },
+            {
+              "client_id": "804317660274-c3ttdtef25q8ipcl4bm30r45gvg9ljr5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
