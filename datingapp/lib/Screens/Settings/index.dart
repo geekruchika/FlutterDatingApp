@@ -1,3 +1,4 @@
+import 'package:datingapp/Components/multiSlider.dart';
 import 'package:datingapp/theme/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -16,61 +17,45 @@ class _SettingsState extends State<Settings> {
   bool matches = true;
   bool messages = true;
   double distance = 0.0;
+  List<RangeSliderData> rangeSliders;
   double ageRangeLeft = 0.0;
   double ageRangeRight = 0.0;
 
-  Offset dragStart;
-
-  onDragStart(DragStartDetails details) {
-    dragStart = details.globalPosition;
-    //print(dragStart);
+  @override
+  void initState() {
+    super.initState();
+    rangeSliders = _rangeSliderDefinitions();
   }
 
-  onDragUpdate(DragUpdateDetails details) {
-    if (dragStart != null) {
-      final newPosition = details.globalPosition;
-      final dx = dragStart.dx - newPosition.dx;
-      // print(dx);
-      if (dx > 0.0) {
+  List<Widget> _buildRangeSliders() {
+    List<Widget> children = <Widget>[];
+    for (int index = 0; index < rangeSliders.length; index++) {
+      children
+          .add(rangeSliders[index].build(context, (double lower, double upper) {
         setState(() {
-          ageRangeLeft = -ageRangeLeft + dx;
+          rangeSliders[index].lowerValue = lower;
+          rangeSliders[index].upperValue = upper;
         });
-      } else if (dx < 0.0) {
-        setState(() {
-          ageRangeLeft = -dx;
-        });
-      } else {}
+      }));
+
+      children.add(new SizedBox(height: 8.0));
     }
+
+    return children;
   }
 
-  onDragEnd(DragEndDetails details) {
-    dragStart = null;
-  }
-
-  onDragStart1(DragStartDetails details) {
-    dragStart = details.globalPosition;
-    //print(dragStart);
-  }
-
-  onDragUpdate1(DragUpdateDetails details) {
-    if (dragStart != null) {
-      final newPosition = details.globalPosition;
-      final dx = dragStart.dx - newPosition.dx;
-      print(dx);
-      if (dx > 0.0) {
-        setState(() {
-          ageRangeRight = -ageRangeLeft + dx;
-        });
-      } else if (dx < 0.0) {
-        setState(() {
-          ageRangeRight = -dx;
-        });
-      } else {}
-    }
-  }
-
-  onDragEnd1(DragEndDetails details) {
-    dragStart = null;
+  List<RangeSliderData> _rangeSliderDefinitions() {
+    return <RangeSliderData>[
+      RangeSliderData(
+          min: 0.0,
+          max: 100.0,
+          lowerValue: 10.0,
+          upperValue: 100.0,
+          thumbColor: gradientOne,
+          activeTrackColor: gradientOne,
+          inactiveTrackColor: Colors.grey,
+          valueIndicatorColor: gradientOne),
+    ];
   }
 
   @override
@@ -232,107 +217,7 @@ class _SettingsState extends State<Settings> {
                       ],
                     ),
                   )),
-              new Card(
-                  elevation: 6.0,
-                  child: new Container(
-                    width: screenSize.width,
-                    padding: new EdgeInsets.only(top: 12.0, bottom: 12.0),
-                    child: new Column(
-                      children: <Widget>[
-                        new ListTile(
-                          title: new Text("Age Range"),
-                          trailing: new Text(
-                              (ageRangeLeft + 18).round().toString() +
-                                  "-" +
-                                  (100 - ageRangeRight).round().toString()),
-                        ),
-                        new ListTile(
-                            enabled: false,
-                            title: new Stack(
-                              alignment: Alignment.center,
-                              children: <Widget>[
-                                new Container(
-                                  width: screenSize.width,
-                                  height: 25.0,
-                                ),
-                                new Positioned(
-                                  //left: 0.0,
-                                  child: new Container(
-                                    height: 4.0,
-                                    width: screenSize.width,
-                                    color: Colors.grey,
-                                    child: new Row(
-                                      children: <Widget>[
-                                        new Flexible(
-                                          flex: ageRangeLeft.floor(),
-                                          child: new Container(),
-                                        ),
-                                        new Flexible(
-                                          flex: 60,
-                                          child: new Container(
-                                            color: gradientOne,
-                                          ),
-                                        ),
-                                        new Flexible(
-                                          flex: ageRangeRight.floor(),
-                                          child: new Container(
-                                            color: Colors.grey,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                new Positioned(
-                                  left: ageRangeLeft,
-                                  child: new GestureDetector(
-                                    onHorizontalDragStart: onDragStart,
-                                    onHorizontalDragUpdate: onDragUpdate,
-                                    onHorizontalDragEnd: onDragEnd,
-                                    child: new Container(
-                                      height: 20.0,
-                                      width: 20.0,
-                                      decoration: new BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: gradientTwo,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                new Positioned(
-                                  right: ageRangeRight,
-                                  child: new GestureDetector(
-                                    onHorizontalDragStart: onDragStart1,
-                                    onHorizontalDragUpdate: onDragUpdate1,
-                                    onHorizontalDragEnd: onDragEnd1,
-                                    child: new Container(
-                                      height: 20.0,
-                                      width: 20.0,
-                                      decoration: new BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: gradientTwo,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            )
-                            // new Slider(
-                            //   activeColor: gradientOne,
-                            //   inactiveColor: Colors.grey,
-                            //   max: 100.0,
-                            //   min: 18.0,
-                            //   value: ageRange,
-                            //   onChanged: (double newValue) {
-                            //     setState(() {
-                            //       ageRange = newValue;
-                            //     });
-                            //   },
-                            // ),
-                            ),
-                      ],
-                    ),
-                  )),
+              new Column(children: <Widget>[]..addAll(_buildRangeSliders())),
               new Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: new Text(

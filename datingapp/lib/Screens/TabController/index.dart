@@ -33,6 +33,24 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         height: screenSize.height / 12,
         child: new TabBar(
           tabs: <Tab>[
+            // new Tab(
+            //   icon: new Icon(
+            //     Icons.check_circle_outline,
+            //     color: Colors.black,
+            //   ),
+            // ),
+            // new Tab(
+            //   icon: new Icon(
+            //     Icons.supervised_user_circle,
+            //     color: Colors.black,
+            //   ),
+            // ),
+            // new Tab(
+            //   icon: new Icon(
+            //     Icons.access_time,
+            //     color: Colors.black,
+            //   ),
+            // ),
             new Tab(
               child: new Container(
                 width: 30.0,

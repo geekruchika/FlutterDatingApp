@@ -19,6 +19,7 @@ class _ChatState extends State<Chat> {
     return new Scaffold(
         appBar: new AppBar(
           elevation: 1.0,
+          brightness: Brightness.light,
           backgroundColor: Colors.white,
           title: new Text(
             "Matches",
@@ -43,7 +44,14 @@ class _ChatState extends State<Chat> {
                 ),
                 new Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: new Text("There are no matches!",style: new TextStyle(fontFamily: "Poppins",fontSize: 15.0,fontWeight: FontWeight.w100,letterSpacing: 1.0),),
+                  child: new Text(
+                    "There are no matches!",
+                    style: new TextStyle(
+                        fontFamily: "Poppins",
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.w100,
+                        letterSpacing: 1.0),
+                  ),
                 )
               ],
             )));

@@ -3,6 +3,8 @@ import 'package:datingapp/Screens/Settings/index.dart';
 import 'package:datingapp/Screens/TabController/index.dart';
 
 import 'package:datingapp/Screens/Login/index.dart';
+import 'package:datingapp/multislider.dart';
+import 'package:datingapp/test.dart';
 import 'package:flutter/material.dart';
 
 class Routes {

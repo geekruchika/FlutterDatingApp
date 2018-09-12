@@ -20,6 +20,7 @@ class _ProfileState extends State<Profile> {
     return new Scaffold(
       appBar: new AppBar(
         elevation: 1.0,
+        brightness: Brightness.light,
         backgroundColor: Colors.white,
         title: new Text(
           "Account",

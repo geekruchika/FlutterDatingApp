@@ -6,6 +6,7 @@ import 'package:datingapp/Screens/Login/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 
 class Login extends StatefulWidget {
@@ -14,6 +15,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> with TickerProviderStateMixin {
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
   PageController controller;
 
   var index = 0;
@@ -31,31 +33,35 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
     setState(() {
       loader = true;
     });
-    final FacebookLoginResult result =
-        await facebookSignIn.logInWithReadPermissions(['email']);
+    Navigator.of(context).pushNamed("/home");
+    // final FacebookLoginResult result =
+    //     await facebookSignIn.logInWithReadPermissions(['email']);
 
-    switch (result.status) {
-      case FacebookLoginStatus.loggedIn:
-        final FacebookAccessToken accessToken = result.accessToken;
-        _showMessage('''
-         Logged in!
-        Token: ${accessToken.token}
-         User id: ${accessToken.userId}
-         Expires: ${accessToken.expires}
-         Permissions: ${accessToken.permissions}
-         Declined permissions: ${accessToken.declinedPermissions}
-         ''');
+    // switch (result.status) {
+    //   case FacebookLoginStatus.loggedIn:
+    //     final FacebookAccessToken accessToken = result.accessToken;
+    //     _showMessage('''
+    //      Logged in!
+    //     Token: ${accessToken.token}
+    //      User id: ${accessToken.userId}
+    //      Expires: ${accessToken.expires}
+    //      Permissions: ${accessToken.permissions}
+    //      Declined permissions: ${accessToken.declinedPermissions}
+    //      ''');
+    //     // final FirebaseUser user = await _auth.signInWithFacebook(
+    //     //     accessToken: result.accessToken.token);
 
-        Navigator.of(context).pushNamed("/home");
-        break;
-      case FacebookLoginStatus.cancelledByUser:
-        _showMessage('Login cancelled by the user.');
-        break;
-      case FacebookLoginStatus.error:
-        _showMessage('Something went wrong with the login process.\n'
-            'Here\'s the error Facebook gave us: ${result.errorMessage}');
-        break;
-    }
+    //     // print(user);
+    //     Navigator.of(context).pushNamed("/home");
+    //     break;
+    //   case FacebookLoginStatus.cancelledByUser:
+    //     _showMessage('Login cancelled by the user.');
+    //     break;
+    //   case FacebookLoginStatus.error:
+    //     _showMessage('Something went wrong with the login process.\n'
+    //         'Here\'s the error Facebook gave us: ${result.errorMessage}');
+    //     break;
+    // }
   }
 
   // Future<Null> _logOut() async {
@@ -67,7 +73,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
     setState(() {
       _message = message;
       print(_message);
-      loader = true;
+      loader = false;
     });
   }
 

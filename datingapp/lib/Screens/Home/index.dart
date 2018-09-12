@@ -1,71 +1,227 @@
-import 'package:datingapp/Data/index.dart';
+import 'dart:async';
+import 'package:datingapp/Screens/Home/activeCard.dart';
+import 'package:datingapp/Screens/Home/data.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => new _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  AnimationController _buttonController;
+  Animation<double> rotate;
+  Animation<double> right;
+  Animation<double> bottom;
+  Animation<double> width;
+  int flag = 0;
+
+  List data = imageData;
+  //List selectedData = [];
   void initState() {
     super.initState();
+    //data = data.reversed.toList();
+    _buttonController = new AnimationController(
+        duration: new Duration(milliseconds: 1000), vsync: this);
+
+    rotate = new Tween<double>(
+      begin: -0.0,
+      end: -40.0,
+    ).animate(
+      new CurvedAnimation(
+        parent: _buttonController,
+        curve: Curves.ease,
+      ),
+    );
+    rotate.addListener(() {
+      setState(() {
+        if (rotate.isCompleted) {
+          data.removeLast();
+          // data.insert(0, i);
+
+          _buttonController.reset();
+        }
+      });
+    });
+
+    right = new Tween<double>(
+      begin: 0.0,
+      end: 400.0,
+    ).animate(
+      new CurvedAnimation(
+        parent: _buttonController,
+        curve: Curves.ease,
+      ),
+    );
+    bottom = new Tween<double>(
+      begin: 15.0,
+      end: 100.0,
+    ).animate(
+      new CurvedAnimation(
+        parent: _buttonController,
+        curve: Curves.ease,
+      ),
+    );
+    width = new Tween<double>(
+      begin: 20.0,
+      end: 25.0,
+    ).animate(
+      new CurvedAnimation(
+        parent: _buttonController,
+        curve: Curves.bounceOut,
+      ),
+    );
   }
 
   @override
-//  void didChangeAppLifecycleState(AppLifecycleState state) {
-//    setState(() {
-//      //_lastLifecycleState = state;
-//    });
-//  }
+  void dispose() {
+    _buttonController.dispose();
+    super.dispose();
+  }
+
+  Future<Null> _swipeAnimation() async {
+    try {
+      await _buttonController.forward();
+    } on TickerCanceled {}
+  }
+
+  dismissImg(DecorationImage img) {
+    setState(() {
+      data.remove(img);
+    });
+  }
+
+  addImg(DecorationImage img) {
+    setState(() {
+      data.remove(img);
+      // selectedData.add(img);
+    });
+  }
+
+  swipeRight() {
+    if (flag == 0)
+      setState(() {
+        flag = 1;
+      });
+    _swipeAnimation();
+  }
+
+  swipeLeft() {
+    if (flag == 1)
+      setState(() {
+        flag = 0;
+      });
+    _swipeAnimation();
+  }
+
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
-    var top = 0.0;
-    var left = 0.0;
-    return new Scaffold(
-      appBar: new AppBar(
-        elevation: 0.5,
-        backgroundColor: Colors.white,
-        title: new Text(
-          "Discover",
-          style: new TextStyle(
-              color: new Color.fromRGBO(92, 107, 122, 1.0), fontSize: 32.0),
+    timeDilation = 0.4;
+
+    double initialBottom = 15.0;
+    var dataLength = data.length;
+    double backCardPosition = initialBottom + (dataLength - 1) * 10 + 10;
+    double backCardWidth = -10.0;
+    return (new Scaffold(
+        appBar: new AppBar(
+          automaticallyImplyLeading: false,
+          elevation: 0.5,
+          backgroundColor: Colors.white,
+          title: new Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              new Text(
+                "Discovers",
+                style: new TextStyle(
+                  color: new Color.fromRGBO(92, 107, 122, 1.0),
+                  fontSize: 32.0,
+                ),
+              ),
+              new Container(
+                width: 15.0,
+                height: 15.0,
+                margin: new EdgeInsets.only(bottom: 20.0),
+                alignment: Alignment.center,
+                child: new Text(
+                  dataLength.toString(),
+                  style: new TextStyle(fontSize: 10.0),
+                ),
+                decoration: new BoxDecoration(
+                    color: Colors.red, shape: BoxShape.circle),
+              )
+            ],
+          ),
         ),
-        centerTitle: false,
-        automaticallyImplyLeading: false,
-      ),
-      body: new Container(
-          width: screenSize.width,
-          height: screenSize.height,
+        body: new Container(
           color: const Color.fromRGBO(239, 239, 245, 1.0),
-          child: new Stack(
-              alignment: AlignmentDirectional.topStart,
-              children: otherUsersData.map((item) {
-                top = top + 10;
-                left = left + 10;
-                return new Positioned(
-                  left: left,
-//                  top: top,
-                  child: new Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      new Container(
-                        margin: new EdgeInsets.all(20.0),
-                        width: 250.0,
-                        height: 300.0 + top,
-                        decoration: new BoxDecoration(
-                            // image: item.img,
-                            color: Colors.black,
-                            borderRadius: new BorderRadius.all(
-                                new Radius.circular(10.0))),
-                      ),
-                      otherUsersData.indexOf(item) == otherUsersData.length - 1
-                          ? new Text(item.name)
-                          : new Text("")
-                    ],
-                  ),
-                );
-              }).toList())),
-    );
+          alignment: Alignment.center,
+          child: dataLength > 0
+              ? new Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: data.map((item) {
+                    // if (data.indexOf(item) == dataLength - 1) {
+                    //   print("active");
+                    backCardPosition = backCardPosition - 10;
+                    backCardWidth = backCardWidth + 10;
+                    return new ActiveCard(
+                        tag: data.indexOf(item) == dataLength - 1
+                            ? "img" + data.indexOf(item).toString()
+                            : "noimg" + data.indexOf(item).toString(),
+                        img: item,
+                        bottom: data.indexOf(item) == dataLength - 1
+                            ? bottom.value
+                            : backCardPosition,
+                        right: data.indexOf(item) == dataLength - 1
+                            ? right.value
+                            : 0.0,
+                        left: 0.0,
+                        cardWidth: backCardWidth,
+                        rotation: data.indexOf(item) == dataLength - 1
+                            ? rotate.value
+                            : 0.0,
+                        skew: data.indexOf(item) == dataLength - 1
+                            ? rotate.value < -10 ? 0.1 : 0.0
+                            : 0.0,
+                        dismissImg: dismissImg,
+                        flag: flag,
+                        //  addImg: addImg,
+                        swipeRight: swipeRight,
+                        swipeLeft: swipeLeft);
+                    // cardDemo(
+                    //     item,
+                    //     bottom.value,
+                    //     right.value,
+                    //     0.0,
+                    //     backCardWidth + 10,
+                    //     rotate.value,
+                    //     rotate.value < -10 ? 0.1 : 0.0,
+                    //     context,
+                    //     dismissImg,
+                    //     flag,
+                    //     addImg,
+                    //     swipeRight,
+                    //     swipeLeft);
+                    // } else {
+                    //   backCardPosition = backCardPosition - 10;
+                    //   backCardWidth = backCardWidth + 10;
+                    //   print("inactive");
+                    //   return new DummyCard(
+                    //     img: item,
+                    //     bottom: backCardPosition,
+                    //     right: 0.0,
+                    //     left: 0.0,
+                    //     cardWidth: backCardWidth,
+                    //     rotation: 0.0,
+                    //     skew: 0.0,
+                    //   );
+                    //   //   cardDemoDummy(item, backCardPosition, 0.0, 0.0,
+                    //   //       backCardWidth, 0.0, 0.0, context);
+                    // }
+                  }).toList())
+              : new Text("There's no one new around you!",
+                  style: new TextStyle(color: Colors.grey, fontSize: 20.0)),
+        )));
   }
 }
