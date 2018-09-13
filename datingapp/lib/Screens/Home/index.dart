@@ -64,15 +64,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         curve: Curves.ease,
       ),
     );
-    width = new Tween<double>(
-      begin: 20.0,
-      end: 25.0,
-    ).animate(
-      new CurvedAnimation(
-        parent: _buttonController,
-        curve: Curves.bounceOut,
-      ),
-    );
   }
 
   @override
@@ -161,8 +152,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               ? new Stack(
                   alignment: AlignmentDirectional.center,
                   children: data.map((item) {
-                    // if (data.indexOf(item) == dataLength - 1) {
-                    //   print("active");
                     backCardPosition = backCardPosition - 10;
                     backCardWidth = backCardWidth + 10;
                     return new ActiveCard(
@@ -186,39 +175,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             : 0.0,
                         dismissImg: dismissImg,
                         flag: flag,
-                        //  addImg: addImg,
                         swipeRight: swipeRight,
                         swipeLeft: swipeLeft);
-                    // cardDemo(
-                    //     item,
-                    //     bottom.value,
-                    //     right.value,
-                    //     0.0,
-                    //     backCardWidth + 10,
-                    //     rotate.value,
-                    //     rotate.value < -10 ? 0.1 : 0.0,
-                    //     context,
-                    //     dismissImg,
-                    //     flag,
-                    //     addImg,
-                    //     swipeRight,
-                    //     swipeLeft);
-                    // } else {
-                    //   backCardPosition = backCardPosition - 10;
-                    //   backCardWidth = backCardWidth + 10;
-                    //   print("inactive");
-                    //   return new DummyCard(
-                    //     img: item,
-                    //     bottom: backCardPosition,
-                    //     right: 0.0,
-                    //     left: 0.0,
-                    //     cardWidth: backCardWidth,
-                    //     rotation: 0.0,
-                    //     skew: 0.0,
-                    //   );
-                    //   //   cardDemoDummy(item, backCardPosition, 0.0, 0.0,
-                    //   //       backCardWidth, 0.0, 0.0, context);
-                    // }
                   }).toList())
               : new Text("There's no one new around you!",
                   style: new TextStyle(color: Colors.grey, fontSize: 20.0)),

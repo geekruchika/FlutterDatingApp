@@ -1,5 +1,6 @@
 import 'package:datingapp/Components/swipeButton.dart';
 import 'package:datingapp/Screens/Home/data.dart';
+import 'package:datingapp/theme/styles.dart';
 
 import 'package:flutter/material.dart';
 
@@ -102,7 +103,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                           },
                           icon: new Icon(
                             Icons.arrow_back,
-                            color: Colors.cyan,
+                            color: gradientOne,
                             size: 30.0,
                           ),
                         ),
@@ -157,13 +158,13 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                         new Row(
                                           children: <Widget>[
                                             new Icon(
-                                              Icons.access_time,
-                                              color: Colors.cyan,
+                                              Icons.sentiment_very_satisfied,
+                                              color: gradientOne,
                                             ),
                                             new Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
-                                              child: new Text("10:00  AM"),
+                                              child: new Text("25 yrs"),
                                             )
                                           ],
                                         ),
@@ -171,12 +172,12 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                           children: <Widget>[
                                             new Icon(
                                               Icons.map,
-                                              color: Colors.cyan,
+                                              color: gradientOne,
                                             ),
                                             new Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
-                                              child: new Text("15 MILES"),
+                                              child: new Text("15 km"),
                                             )
                                           ],
                                         ),
@@ -211,35 +212,75 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                           CrossAxisAlignment.start,
                                       children: <Widget>[
                                         new Text(
-                                          "ATTENDEES",
+                                          "INTERESTS",
                                           style: new TextStyle(
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        // new Row(
-                                        //   mainAxisAlignment:
-                                        //       MainAxisAlignment.spaceAround,
-                                        //   crossAxisAlignment:
-                                        //       CrossAxisAlignment.start,
-                                        //   children: <Widget>[
-                                        //     new CircleAvatar(
-                                        //         backgroundImage: avatar1),
-                                        //     new CircleAvatar(
-                                        //       backgroundImage: avatar2,
-                                        //     ),
-                                        //     new CircleAvatar(
-                                        //       backgroundImage: avatar3,
-                                        //     ),
-                                        //     new CircleAvatar(
-                                        //       backgroundImage: avatar4,
-                                        //     ),
-                                        //     new CircleAvatar(
-                                        //       backgroundImage: avatar5,
-                                        //     ),
-                                        //     new CircleAvatar(
-                                        //       backgroundImage: avatar6,
-                                        //     )
-                                        //   ],
-                                        // )
+                                        new Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          // crossAxisAlignment:
+                                          //     CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            new Container(
+                                              width: 70.0,
+                                              height: 30.0,
+                                              alignment: Alignment.center,
+                                              decoration: new BoxDecoration(
+                                                  color: gradientOne,
+                                                  borderRadius:
+                                                      new BorderRadius.all(
+                                                          new Radius.circular(
+                                                              30.0))),
+                                              child: new Text(
+                                                "Movies",
+                                                style: new TextStyle(
+                                                    fontSize: 15.0,
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ),
+                                            ),
+                                            new Container(
+                                              width: 70.0,
+                                              height: 30.0,
+                                              alignment: Alignment.center,
+                                              decoration: new BoxDecoration(
+                                                  color: gradientOne,
+                                                  borderRadius:
+                                                      new BorderRadius.all(
+                                                          new Radius.circular(
+                                                              30.0))),
+                                              child: new Text(
+                                                "Book",
+                                                style: new TextStyle(
+                                                    fontSize: 15.0,
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ),
+                                            ),
+                                            new Container(
+                                              width: 70.0,
+                                              height: 30.0,
+                                              alignment: Alignment.center,
+                                              decoration: new BoxDecoration(
+                                                  color: gradientOne,
+                                                  borderRadius:
+                                                      new BorderRadius.all(
+                                                          new Radius.circular(
+                                                              30.0))),
+                                              child: new Text(
+                                                "Travel",
+                                                style: new TextStyle(
+                                                    fontSize: 15.0,
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ),
+                                            )
+                                          ],
+                                        )
                                       ],
                                     ),
                                   ),

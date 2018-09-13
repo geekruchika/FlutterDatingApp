@@ -237,9 +237,7 @@ class _EditProfileState extends State<EditProfile> {
                     new Container(
                       width: 150.0,
                       height: 50.0,
-                      // margin: new EdgeInsets.only(top: 24.0),
                       alignment: Alignment.center,
-                      // padding: new EdgeInsets.all(10.0),
                       decoration: new BoxDecoration(
                           border:
                               new Border.all(width: 2.0, color: gradientThree),
@@ -257,9 +255,7 @@ class _EditProfileState extends State<EditProfile> {
                     new Container(
                       width: 150.0,
                       height: 50.0,
-                      // margin: new EdgeInsets.only(top: 24.0),
                       alignment: Alignment.center,
-                      // padding: new EdgeInsets.all(10.0),
                       decoration: new BoxDecoration(
                           color: gradientOne,
                           border:
